@@ -1,4 +1,4 @@
-# Oficina de Integração 1
+# Oficina de Integração 2
 ### Trabalho final de Grupo de Oficina de Integração 2 da Universidade Tecnológica Federal do Paraná.
 <ol>
 Este projeto visa avaliar o aprendizado e colocar em prática as matérias do curso de engenharia de software da UTFPR. Se trata de um sistema desenvolvido em Python, HTML, CSS Bootstrap e com Framework Django.
