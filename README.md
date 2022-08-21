@@ -8,7 +8,7 @@ O principal objetivo do sistema é poder auxiliar o usuário no gerenciamento de
 
 ### Definição da estratégia de automação de testes do sistema.
 <ol>
-O sistema será testado e validado por meio de teste unitários automatizados, com a utilização da biblioteca unittest do python para o backend, e o fremework selenium webdriver para o frontend.
+O sistema será testado e validado por meio de testes unitários automatizados, com a utilização da biblioteca unittest do python para o backend, e o fremework selenium webdriver para o frontend.
 </ol>
   
 ## Definição da arquitetura em alto nível do sistema 
