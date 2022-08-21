@@ -2,7 +2,7 @@
 
 ## Requisitos funcionais
 
-### RF 01
+### RF 012
 
 O sistema deve permitir o cadastro de usuários.
 
