@@ -11,7 +11,7 @@ O principal objetivo do sistema é poder auxiliar o usuário no gerenciamento de
   
 ### Clone o projeto
 ```
-git clone https://github.com/rokukawa/Oficina-de-Integra-o-1.git
+git clone https://github.com/rokukawa/Oficina-de-Integracao-2.git
 ```
 </ol>
 
