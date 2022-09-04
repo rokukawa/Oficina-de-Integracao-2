@@ -27,6 +27,17 @@ https://drive.google.com/file/d/1hVJJJK1faDuTMJKC-eSu0d6bga4IcYxV/view?usp=shari
 git clone https://github.com/rokukawa/Oficina-de-Integracao-2.git
 ```
 </ol>
+  
+## Instalar e configuar o PostgreSQL
+<ol>
+  
+### Crie um banco de dados com o nome Stylus Caneta
+```
+CREATE DATABASE "Stylus Caneta";
+```
+### Defina o nome do usuário: oficina
+### Defina o senha: root
+</ol>
 
   
 ## Instalar as dependências do projeto
