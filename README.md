@@ -8,7 +8,7 @@ O principal objetivo do sistema é poder auxiliar o usuário no gerenciamento de
 
 ### Definição da estratégia de automação de testes do sistema.
 <ol>
-O sistema será testado e validado por meio de testes unitários automatizados, com a utilização da biblioteca unittest do python para o backend, e o fremework selenium webdriver para o frontend.
+O sistema será testado e validado por meio de testes unitários automatizados, com a utilização do fremework unittest do python para o backend, e o fremework selenium webdriver para o frontend.
 </ol>
   
 ## Definição da arquitetura em alto nível do sistema 
@@ -36,7 +36,7 @@ git clone https://github.com/rokukawa/Oficina-de-Integracao-2.git
 CREATE DATABASE "Stylus Caneta";
 ```
 ### Defina o nome do usuário: oficina
-### Defina o senha: root
+### Defina a senha: root
 </ol>
 
   
