@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <form action="{% url 'cadastro_usuario' %}" method="POST"> {% csrf_token %}
+        
+        <div >
+            <label for="username" name="username"><b>Nome</b></label>
+            {{ usuario_form.username }}      
+        </div>
+
+        <div >
+            <label for="email" name="email"><b>Email</b></label>
+            {{ usuario_form.email }}    
+        </div>
+
+        <div >                        
+            <label for="senha" name="password"><b>Senha</b></label>
+            {{ usuario_form.password }}  
+        </div>
+
+        <div>
+            <div >        
+                <label for="telefone_residencial" name="telefone_residencial"><b>Telefone Residencial</b></label>
+                {{ usuario_form.telefone_residencial }} 
+            </div>
+            
+            <div >        
+                <label for="telefone_celular" name="telefone_celular"><b>Telefone Celular</b></label>
+                {{ usuario_form.telefone_celular }}   
+            </div>
+        </div>
+
+        <div>
+            <div >
+                <div>
+                    <button type="submit">Confirmar Cadastro</button>
+                </div>
+                <div >
+                    <button type="button">Voltar para a tela de Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
