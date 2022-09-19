@@ -47,3 +47,14 @@ def edita_caneta(request, caneta_id):
     edita_caneta = Caneta.objects.filter(pk=caneta_id)
     contexto = {'edita_caneta': edita_caneta}
     return render(request, 'editar/edita_caneta.html', contexto)
+
+
+def atualiza_caneta(request):
+    if request.method == 'POST':
+        caneta_id = request.POST['caneta_id']
+        c = Caneta.objects.get(pk=caneta_id)
+        c.modelo = request.POST['modelo']
+        c.cor = request.POST['cor']
+        c.ponta = request.POST['ponta']
+        c.save()
+        return redirect('lista_canetas') 

@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
-from fornecedor.models import Fornecedor
 from datetime import datetime
 
 # Create your models here.

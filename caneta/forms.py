@@ -1,13 +1,12 @@
-from fornecedor.views import lista_fornecedores
 from django import forms
 from caneta.models import *
-from oficina1.validation import *
+from oficina2.validation import *
 
 
 class CanetaForms(forms.ModelForm):
     class Meta:
         model = Caneta
-        fields = 'all'
+        fields = ('modelo', 'cor', 'ponta')
         widgets = {
             'modelo': forms.TextInput(attrs={'class': 'item', 'max_length': 100, 'placeholder': 'Informe o modelo da caneta'}),
             'cor': forms.TextInput(attrs={'class': 'item', 'max_length': 100, 'placeholder': 'Informe a cor da caneta'}),

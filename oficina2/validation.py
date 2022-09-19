@@ -1,5 +1,4 @@
-from fornecedor.models import Fornecedor
-from caneta.models import Caneta, Relatorio
+from caneta.models import Caneta
 
 
 def campo_contem_numero(valor_campo, nome_campo, lista_de_erros):
