@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="{% url 'cadastro_caneta' %}" method="POST"> {% csrf_token %}
+        {% for field in caneta_form.visible_fields %}
+        {% for error in field.errors %}
+        <section role="alert">
+            {{ field.errors }}
+        </section>
+        {% endfor %}
+        {% endfor %}
+
+        <div>
+            <div>
+                <label for="modelo" name="modelo"><b>Modelo</b></label>
+                {{ caneta_form.modelo }}
+            </div>
+            <div>
+                <label for="cor" name="cor"><b>Cor</b></label>
+                {{ caneta_form.cor }}
+            </div>
+            <div>
+                <label for="ponta" name="ponta"><b>Ponta</b></label>
+                {{ caneta_form.ponta }}
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <button type="submit">Confirmar Cadastro</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
