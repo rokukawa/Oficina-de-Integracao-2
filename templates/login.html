@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" method="POST"> {% csrf_token %}
+        <div>
+            <div>
+                <label for="email"><b>Email</b></label>
+            </div>
+            <div>
+                <input type="text" id="email" name="email" placeholder="Entre com o email cadastrado">
+            </div>
+            <div>
+                <label for="senha"><b>Senha</b></label>
+            </div>
+            <div>
+                <input type="password" id="senha" name="senha" placeholder="Digite aqui sua senha">
+            </div>
+        </div>
+        <div>
+            <div>
+                <button type="submit">Acessar sua conta</button>
+                <button type="button">Ainda não tem conta? Clique aqui</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
