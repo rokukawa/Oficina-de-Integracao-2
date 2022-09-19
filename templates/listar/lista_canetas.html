@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        {% if lista_canetas %}
+        {% for lista_caneta in lista_canetas %}
+        <div>
+            <div>
+                <div>
+                    <label for="modelo" name="modelo"><b>Modelo</b></label>
+                    <input for="modelo" name="modelo" value="{{ lista_caneta.modelo }}" readonly="True">
+                </div>
+
+                <div>
+                    <label for="cor" name="cor"><b>Cor</b></label>
+                    <input for="cor" name="cor" value="{{ lista_caneta.cor }}" readonly="True">
+                </div>
+
+                <div>
+                    <label for="ponta" name="ponta"><b>Ponta</b></label>
+                    <input for="ponta" name="ponta" value="{{ lista_caneta.ponta }}" readonly="True">
+                </div>
+            </div>
+
+            <div>
+                <a href="{% url 'exclui_caneta' lista_caneta.id %}">
+                    <button class="btn btn-danger" type="submit">Excluir</button>
+                </a>
+                <a href="{% url 'edita_caneta' lista_caneta.id %}">
+                    <button class="btn btn-warning" type="submit">Editar</button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div></div>
+        <p>Nenhuma caneta cadastrada ainda.</p>
+    </div>
+    {% endif %}
+    </div>
+</body>
+
+</html>
