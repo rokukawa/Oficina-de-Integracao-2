@@ -85,7 +85,10 @@ DATABASES = {
         'NAME': 'Stylus Caneta',
         'USER': 'oficina',
         'PASSWORD': 'root',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
+        'TEST': {
+            'NAME': 'test_usuario',
+        },
     }
 }
 
