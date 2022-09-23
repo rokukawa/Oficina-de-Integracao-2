@@ -70,3 +70,11 @@ python -m venv ./venv
 python manage.py runserver
 ```
 </ol>
+  
+## Executar os testes
+<ol>
+  
+```
+python manage.py test
+```
+</ol>
