@@ -29,7 +29,7 @@ class TestFormsUsuario(TestCase):
         form = UsuarioForms()
         self.assertIn("telefone_celular", form.fields)
         self.assertInHTML(
-            '<input type="text" name="telefone_celular" class="item" max_length="100" placeholder="Informe o seu número de celular" data-mask="(00) 00000-0000" maxlength="20" required id="id_telefone_celular">', str(form)
+            '<input type="text" name="telefone_celular" class="item" max_length="100" placeholder="Informe o seu número de celular" data-mask="(00) 00000-0000" maxlength="20" id="id_telefone_celular">', str(form)
         )    
 
     def test_campos_form_telefone_residencial(self):
