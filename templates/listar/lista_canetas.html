@@ -1,51 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'home.html' %} {% load static %} {% block title %} Listagem {% endblock %} {% block content%} {% include 'partials/_menu.html' %} {% if user.is_authenticated %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <div>
-        {% if lista_canetas %}
-        {% for lista_caneta in lista_canetas %}
-        <div>
-            <div>
-                <div>
-                    <label for="modelo" name="modelo"><b>Modelo</b></label>
-                    <input for="modelo" name="modelo" value="{{ lista_caneta.modelo }}" readonly="True">
+<div class="col-lg-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Listagem de Canetas</h3>
                 </div>
-
-                <div>
-                    <label for="cor" name="cor"><b>Cor</b></label>
-                    <input for="cor" name="cor" value="{{ lista_caneta.cor }}" readonly="True">
-                </div>
-
-                <div>
-                    <label for="ponta" name="ponta"><b>Ponta</b></label>
-                    <input for="ponta" name="ponta" value="{{ lista_caneta.ponta }}" readonly="True">
-                </div>
-            </div>
-
-            <div>
-                <a href="{% url 'exclui_caneta' lista_caneta.id %}">
-                    <button class="btn btn-danger" type="submit">Excluir</button>
-                </a>
-                <a href="{% url 'edita_caneta' lista_caneta.id %}">
-                    <button class="btn btn-warning" type="submit">Editar</button>
-                </a>
             </div>
         </div>
-        {% endfor %}
-        {% else %}
-        <div></div>
-        <p>Nenhuma caneta cadastrada ainda.</p>
-    </div>
-    {% endif %}
-    </div>
-</body>
 
-</html>
+        <div class="col-sm-12">
+            <form action="{% url 'lista_canetas' %}" method="GET" class="form-inline">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="search" placeholder="Pesquisar modelo da caneta">
+                    <button class="btn btn-dark" type="button">Pesquisar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container-item-form">
+            {% if lista_canetas %} {% for lista_caneta in lista_canetas %}
+            <div class="container" style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="modelo" name="modelo"><b>Modelo</b></label>
+                        <input for="modelo" name="modelo" value="{{ lista_caneta.modelo }}" readonly="True">
+                    </div>
+
+                    <div class="item">
+                        <label for="cor" name="cor"><b>Cor</b></label>
+                        <input for="cor" name="cor" value="{{ lista_caneta.cor }}" readonly="True">
+                    </div>
+
+                    <div class="item">
+                        <label for="ponta" name="ponta"><b>Ponta</b></label>
+                        <input for="ponta" name="ponta" value="{{ lista_caneta.ponta }}" readonly="True">
+                    </div>
+                </div>
+
+                <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
+                    <a href="{% url 'exclui_caneta' lista_caneta.id %}">
+                        <button class="btn btn-danger" type="submit">Excluir</button>
+                    </a>
+                    <a href="{% url 'edita_caneta' lista_caneta.id %}">
+                        <button class="btn btn-warning" type="submit">Editar</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %} {% else %}
+            <div class="col-12 col-sm-6 col-lg-4"></div>
+            <p>Nenhuma caneta cadastrada ainda.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <section class="top-catagory-area section-padding-20-0">
+        <div class="container">
+            {% if lista_canetas.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if lista_canetas.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ lista_canetas.previous_page_number }}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+                {% endif %} {% for pagina in lista_canetas.paginator.page_range %} {% if lista_canetas.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link">{{ pagina }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{ pagina }}" class="page-link">{{ pagina }}</a>
+                </li>
+                {% endif %} {% endfor %} {% if lista_canetas.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ lista_canetas.next_page_number }}" class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </section>
+</div>
+</div>
+{% endif %} {% endblock %}
