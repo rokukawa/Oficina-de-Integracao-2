@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,32 +7,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- Fonte google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'site.css' %}">
+    <title>Login</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 
 <body>
-    <form action="#" method="POST"> {% csrf_token %}
-        <div>
-            <div>
-                <label for="email"><b>Email</b></label>
+    <section>
+        <div class="container">
+            <div class="container-item-titulo">
+                <h2>Login</h2>
             </div>
-            <div>
-                <input type="text" id="email" name="email" placeholder="Entre com o email cadastrado">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="item-mensagem error">
+                <p>{{ message }}</p>
             </div>
-            <div>
-                <label for="senha"><b>Senha</b></label>
-            </div>
-            <div>
-                <input type="password" id="senha" name="senha" placeholder="Digite aqui sua senha">
+            {% endfor %}
+            {% endif %}
+
+            <div class="container-item-form">
+                <form action="#" method="POST"> {% csrf_token %}
+                    <div class="dados">
+                        <div class="item">
+                            <label for="email"><b>Email</b></label>
+                        </div>
+                        <div class="item">
+                            <input type="text" id="email" name="email" placeholder="Entre com o email cadastrado">
+                        </div>
+                        <div class="item">
+                            <label for="senha"><b>Senha</b></label>
+                        </div>
+                        <div class="item">
+                            <input type="password" id="senha" name="senha" placeholder="Digite aqui sua senha">
+                        </div>
+                    </div>
+                    <div class="confirmar">
+                        <div class="item">
+                            <button type="submit" class="btn btn-success">Acessar sua conta</button>
+                            <button type="button" class="btn btn-primary" onclick="exibirCriarConta()">Ainda não tem
+                                conta? Clique aqui</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div>
-            <div>
-                <button type="submit">Acessar sua conta</button>
-                <button type="button">Ainda não tem conta? Clique aqui</button>
-            </div>
-        </div>
-    </form>
+    </section>
+
+    <script>
+        function exibirCriarConta() {
+            location.href = "{% url 'cadastro_usuario' %}";
+        } 
+    </script>
+
 </body>
 
 </html>
