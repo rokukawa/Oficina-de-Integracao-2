@@ -1,52 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'home.html' %}
+{% load static %}
 
-    <form action="{% url 'cadastro_usuario' %}" method="POST"> {% csrf_token %}
+{% block title %}
+Cadastro
+{% endblock %}
 
-        <div >
-            <label for="username" name="username"><b>Nome</b></label>
-            {{ usuario_form.username }}      
+{% block content%}
+
+<section>
+    <div class="container">
+        <div class="container-item-titulo">
+            <h2>Cadastro Usuário</h2>
         </div>
 
-        <div >
-            <label for="email" name="email"><b>Email</b></label>
-            {{ usuario_form.email }}    
-        </div>
-
-        <div >                        
-            <label for="senha" name="password"><b>Senha</b></label>
-            {{ usuario_form.password }}  
-        </div>
-
-        <div>
-            <div >        
-                <label for="telefone_residencial" name="telefone_residencial"><b>Telefone Residencial</b></label>
-                {{ usuario_form.telefone_residencial }} 
-            </div>
-
-            <div >        
-                <label for="telefone_celular" name="telefone_celular"><b>Telefone Celular</b></label>
-                {{ usuario_form.telefone_celular }}   
-            </div>
-        </div>
-
-        <div>
-            <div >
-                <div>
-                    <button type="submit">Confirmar Cadastro</button>
+        <div class="container-item-form">
+            <form action="{% url 'cadastro_usuario' %}" method="POST"> {% csrf_token %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="item-mensagem success">
+                    <p>{{ message }}</p>
                 </div>
-                <div >
-                    <button type="button">Voltar para a tela de Login</button>
+                {% endfor %}
+                {% endif %}
+
+                <div class="item">
+                    <label for="username" name="username"><b>Nome</b></label>
+                    {{ usuario_form.username }}
                 </div>
-            </div>
+
+                <div class="item">
+                    <label for="email" name="email"><b>Email</b></label>
+                    {{ usuario_form.email }}
+                </div>
+
+                <div class="item">
+                    <label for="senha" name="password"><b>Senha</b></label>
+                    {{ usuario_form.password }}
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="telefone_residencial" name="telefone_residencial"><b>Telefone
+                                Residencial</b></label>
+                        {{ usuario_form.telefone_residencial }}
+                    </div>
+
+                    <div class="item">
+                        <label for="telefone_celular" name="telefone_celular"><b>Telefone Celular</b></label>
+                        {{ usuario_form.telefone_celular }}
+                    </div>
+                </div>
+
+                <div class="confirmar">
+                    <div class="item">
+                        <div class="btn-group me-2" role="group" aria-label="Second group">
+                            <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                        </div>
+                        <div class="btn-group me-2" role="group" aria-label="Second group">
+                            <button type="button" class="btn btn-primary" onclick="exibirTelaLogin()">Voltar para a tela
+                                de Login</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</body>
-</html>
+    </div>
+</section>
+
+<script>
+    function exibirTelaLogin() {
+        location.href = "{% url 'login' %}";
+    } 
+</script>
+{% endblock %}
