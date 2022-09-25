@@ -1,44 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'home.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block title %}
+Cadastro
+{% endblock %}
 
-<body>
-    <form action="{% url 'cadastro_caneta' %}" method="POST"> {% csrf_token %}
-        {% for field in caneta_form.visible_fields %}
-        {% for error in field.errors %}
-        <section role="alert">
-            {{ field.errors }}
-        </section>
-        {% endfor %}
-        {% endfor %}
 
-        <div>
-            <div>
-                <label for="modelo" name="modelo"><b>Modelo</b></label>
-                {{ caneta_form.modelo }}
-            </div>
-            <div>
-                <label for="cor" name="cor"><b>Cor</b></label>
-                {{ caneta_form.cor }}
-            </div>
-            <div>
-                <label for="ponta" name="ponta"><b>Ponta</b></label>
-                {{ caneta_form.ponta }}
-            </div>
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<div class="col-lg-9">
+    <div class="container">
+        <div class="container-item-titulo">
+            <h2>Cadastro Caneta</h2>
         </div>
 
-        <div>
-            <div>
-                <button type="submit">Confirmar Cadastro</button>
-            </div>
-        </div>
-    </form>
-</body>
+        <div class="container-item-form">
+            <form action="{% url 'cadastro_caneta' %}" method="POST"> {% csrf_token %}
+                {% for field in caneta_form.visible_fields %}
+                {% for error in field.errors %}
+                <section class="item-mensagem error" role="alert">
+                    {{ field.errors }}
+                </section>
+                {% endfor %}
+                {% endfor %}
 
-</html>
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="modelo" name="modelo"><b>Modelo</b></label>
+                        {{ caneta_form.modelo }}
+                    </div>
+                    <div class="item">
+                        <label for="cor" name="cor"><b>Cor</b></label>
+                        {{ caneta_form.cor }}
+                    </div>
+                    <div class="item">
+                        <label for="ponta" name="ponta"><b>Ponta</b></label>
+                        {{ caneta_form.ponta }}
+                    </div>
+                </div>
+
+                <div class="confirmar">
+                    <div class="item">
+                        <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%endif %}
+{% endblock %}
