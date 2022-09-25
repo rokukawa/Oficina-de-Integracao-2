@@ -1,43 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'home.html' %} {% load static %} {% block title %} Edição {% endblock %} {% block content%} {% include 'partials/_menu.html' %} {% if user.is_authenticated %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <form action="{% url 'atualiza_caneta' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-        {% if edita_caneta %}
-        {% for caneta in edita_caneta %}
-
-        <input type="text" name="caneta_id" value="{{ caneta.id }}" hidden>
-
-        <div>
-            <div>
-                <label for="modelo" name="cemodelolular"><b>Modelo</b></label>
-                <input type="text" name="modelo" value="{{ caneta.modelo }}" required>
-            </div>
-            <div>
-                <label for="cor" name="cor"><b>Cor</b></label>
-                <input type="text" name="cor" value="{{ caneta.cor }}" required>
-            </div>
-            <div>
-                <label for="ponta" name="ponta"><b>Ponta</b></label>
-                <input type="text" name="ponta" value="{{ caneta.ponta }}" required>
-
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Edição de Canetas</h3>
+                </div>
             </div>
         </div>
 
-        {% endfor %}
-        {% endif %}
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form action="{% url 'atualiza_caneta' %}" method="post" enctype="multipart/form-data">{% csrf_token %} {% if edita_caneta %} {% for caneta in edita_caneta %}
 
-        <div style="margin-top: 10px;">
-            <button type="submit">Atualizar</button>
+                        <input type="text" name="caneta_id" class="form-control" value="{{ caneta.id }}" hidden>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="modelo" name="cemodelolular"><b>Modelo</b></label>
+                                <input type="text" name="modelo" value="{{ caneta.modelo }}" required>
+                            </div>
+                            <div class="item">
+                                <label for="cor" name="cor"><b>Cor</b></label>
+                                <input type="text" name="cor" value="{{ caneta.cor }}" required>
+                            </div>
+                            <div class="item">
+                                <label for="ponta" name="ponta"><b>Ponta</b></label>
+                                <input type="text" name="ponta" value="{{ caneta.ponta }}" required>
+
+                            </div>
+                        </div>
+
+                        {% endfor %} {% endif %}
+
+                        <div class="col-12 text-center" style="margin-top: 10px;">
+                            <button class="btn btn-success" type="submit">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
-</body>
+    </div>
+</div>
 
-</html>
+{% endif %} {% endblock %}
