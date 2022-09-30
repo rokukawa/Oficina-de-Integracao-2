@@ -1,4 +1,4 @@
-from usuario.views import *
+from apps.usuario.views import *
 from django.urls import path
 from . import views
 

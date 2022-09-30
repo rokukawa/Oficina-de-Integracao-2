@@ -1,5 +1,5 @@
 from django import forms
-from caneta.models import *
+from apps.caneta.models import *
 from oficina2.validation import *
 
 

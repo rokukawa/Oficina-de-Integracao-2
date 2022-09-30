@@ -1,6 +1,6 @@
 from django.contrib import auth, messages
 from django.shortcuts import render, redirect
-from caneta.forms import *
+from apps.caneta.forms import *
 from django.core.paginator import Paginator
 
 # Create your views here.

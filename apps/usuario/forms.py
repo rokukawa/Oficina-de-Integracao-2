@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import fields
 from django.forms import widgets
-from usuario.models import *
+from apps.usuario.models import *
 
 class UsuarioForms(forms.ModelForm):
     class Meta:

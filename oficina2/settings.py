@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # apps
-    'usuario',
-    'caneta',
+    'apps.usuario',
+    'apps.caneta',
     # other apps
     'phonenumber_field',
 ]

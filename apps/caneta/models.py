@@ -10,4 +10,4 @@ class Caneta(models.Model):
     ponta = models.CharField(max_length=45, null=False)
 
     def str(self):
-        return self.modelo
+        return f'{self.modelo}, {self.cor}, {self.ponta}'

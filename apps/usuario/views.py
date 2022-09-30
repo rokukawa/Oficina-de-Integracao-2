@@ -1,7 +1,7 @@
-from usuario.models import Usuario
+from apps.usuario.models import Usuario
 from django.contrib import auth, messages
 from django.shortcuts import render, redirect
-from usuario.forms import *
+from apps.usuario.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
