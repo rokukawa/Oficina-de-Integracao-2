@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from django.test import TestCase
-from usuario.forms import UsuarioForms
+from apps.usuario.forms import UsuarioForms
 
 class TestFormsUsuario(TestCase):
     

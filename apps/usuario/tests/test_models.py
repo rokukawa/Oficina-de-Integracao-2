@@ -1,5 +1,5 @@
 import unittest
-from usuario.models import Usuario
+from apps.usuario.models import Usuario
 from django.db import DataError, IntegrityError
 
 class TestModelUsuario(unittest.TestCase):

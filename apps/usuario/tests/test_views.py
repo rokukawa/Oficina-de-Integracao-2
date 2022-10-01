@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from django.test import TestCase
-from usuario.views import cadastro_usuario
+from apps.usuario.views import cadastro_usuario
 
 class TestViewsUsuario(TestCase):
 

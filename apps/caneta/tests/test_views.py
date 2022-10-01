@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client
-from caneta.models import Caneta
+from apps.caneta.models import Caneta
 from django.urls import reverse
 
 class TestViewsCaneta(TestCase):
@@ -52,5 +52,5 @@ class TestViewsCaneta(TestCase):
             id=id_atualizar
         )
         
-        # self.assertEqual(caneta_self.cor, 'laranja', 'Argumentos divergentes.')
+        self.assertEqual(caneta_self.cor, 'laranja', 'Argumentos divergentes.')
 
