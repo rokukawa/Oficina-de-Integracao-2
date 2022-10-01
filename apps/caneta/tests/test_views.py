@@ -6,7 +6,7 @@ from django.urls import reverse
 class TestViewsCaneta(TestCase):
 
     def setUp(self):
-        client = Client()
+        self.client = Client()
 
         self.caneta_inseridas = []
         self.caneta_inseridas.append(Caneta.objects.create(modelo='feltro', cor='verde', ponta='fina'))

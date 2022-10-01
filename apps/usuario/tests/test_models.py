@@ -46,3 +46,12 @@ class TestModelUsuario(unittest.TestCase):
 
         self.assertEqual(mensagem, 'Erro na criação de usuário, campo nome não pode conter mais que 30 caracteres')
         
+    def test_criar_usuario_com_sucesso(self):
+        try:
+            Usuario.objects.create(username='Sucesso', email='sucesso@sucesso.com')
+            mensagem = 'Sucesso na criação de usuário'
+        except DataError:
+            self.assertEqual(mensagem, 'Erro na criação de usuário!')
+
+        self.assertEqual('Sucesso na criação de usuário', mensagem)
+            
