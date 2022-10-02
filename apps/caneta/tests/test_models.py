@@ -40,11 +40,3 @@ class TestModelCaneta(unittest.TestCase):
         
         self.assertEqual(mensagem, 'Sucesso na criação de caneta')
    
-    def test_criar_caneta_com_menos_de_4_caracteres(self):
-        try: 
-            Caneta.objects.create(modelo='abc', cor='azul', ponta='fina')
-            mensagem = 'Sucesso na criação de caneta'
-        except DataError:
-            mensagem = 'Erro na criação de caneta, campos não podem conter menos de 4 caracteres'
-
-        self.assertEqual(mensagem, 'Erro na criação de caneta, campos não podem conter menos de 4 caracteres')
