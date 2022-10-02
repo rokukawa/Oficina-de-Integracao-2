@@ -20,7 +20,7 @@ class TestViewsCaneta(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'cadastrar/cadastro_caneta.html')
     
-    def test_cadastrar(self):
+    def test_cadastrar_caneta(self):
         #fazer a requisição pela rota criada na url
         str_url = reverse('cadastro_caneta')
         self.client.post(str_url, {'modelo': 'esferográfica', 'cor': 'azul', 'ponta': 'fina'})

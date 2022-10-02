@@ -61,32 +61,3 @@ def logout(request):
     return redirect('login')
 
     
-def login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        senha = request.POST['senha']
-        
-        if email == "" or senha == "":
-            messages.error(request, 'Os campos e-mail e senha não podem ser vazios.')
-            return redirect('login')
-
-        if not Usuario.objects.filter(email=email).exists():
-            messages.error(request, 'O campo e-mail não existe.')
-            return redirect('login')
-
-
-        if Usuario.objects.filter(email=email).exists():
-            user = authenticate(request, email=email, password=senha)
-            if user is not None:
-                if user.is_active:
-                    auth.login(request, user)
-                    return redirect('dashboard')
-
-    return render(request, 'login.html')
-    
-
-def logout(request):
-    auth.logout(request)
-    return redirect('login')
-
-    
