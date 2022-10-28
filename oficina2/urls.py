@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.usuario.urls')),
     path('', include('apps.caneta.urls')),
+    path('', include('apps.fornecedor.urls')),
 ]

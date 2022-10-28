@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # apps
     'apps.usuario',
     'apps.caneta',
+    'apps.fornecedor',
     # other apps
     'phonenumber_field',
 ]
