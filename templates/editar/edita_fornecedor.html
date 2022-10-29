@@ -1,0 +1,109 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+Edição
+{% endblock %}
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Edição de Fornecedores</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form action="{% url 'atualiza_fornecedor' %}" method="post" enctype="multipart/form-data">{%
+                        csrf_token %}
+                        {% if edita_fornecedor %}
+                        {% for fornecedor in edita_fornecedor %}
+
+                        <input type="text" name="fornecedor_id" class="form-control" value="{{ fornecedor.id }}" hidden>
+
+                        <div class="item">
+                            <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome</b></label>
+                            <input type="text" name="nome_fornecedor" value="{{ fornecedor.nome_fornecedor }}" required>
+                        </div>
+
+                        <div class="item">
+                            <label for="cnpj" name="cnpj"><b>CNPJ</b></label>
+                            <input type="text" name="cnpj" value="{{ fornecedor.cnpj }} " required>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="celular" name="celular"><b>Celular</b></label>
+                                <input type="text" name="celular" value="{{ fornecedor.celular }}" required>
+                            </div>
+                            <div class="item">
+                                <label for="residencial" name="residencial"><b>Residencial</b></label>
+                                <input type="text" name="residencial" value="{{ fornecedor.residencial }}" required>
+                            </div>
+                            <div class="item">
+                                <label for="comercial" name="comercial"><b>Comercial</b></label>
+                                <input type="text" name="comercial" value="{{ fornecedor.comercial }}" required>
+
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="rua" name="rua"><b>Rua</b></label>
+                                <input type="text" name="rua" value="{{ fornecedor.rua }}" required>
+                            </div>
+
+                            <div class="item">
+                                <label for="celular" name="bairro"><b>Bairro</b></label>
+                                <input type="text" name="bairro" value="{{ fornecedor.bairro }}" required>
+                            </div>
+
+                            <div class="item">
+                                <label for="cidade" name="cidade"><b>Cidade</b></label>
+                                <input type="text" name="cidade" value="{{ fornecedor.cidade }}" required>
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="cep" name="cep"><b>CEP</b></label>
+                                <input type="text" name="cep" value="{{ fornecedor.cep }}" required>
+                            </div>
+
+                            <div class="item">
+                                <label for="numero" name="numero"><b>Número</b></label>
+                                <input type="text" name="numero" value="{{ fornecedor.numero }}" required>
+                            </div>
+
+                            <div class="item">
+                                <label for="complemento" name="complemento"><b>Complemento</b></label>
+                                <input type="text" name="complemento" value="{{ fornecedor.complemento }}" required>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                        {% endif %}
+
+                        <div class="col-12 text-center" style="margin-top: 10px;">
+                            <button class="btn btn-success" type="submit">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

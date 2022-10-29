@@ -1,0 +1,100 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+Cadastro
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<div class="col-lg-9">
+    <div class="container">
+        <div class="container-item-titulo">
+            <h2>Cadastro Fornecedor</h2>
+        </div>
+
+        <div class="container-item-form">
+            <form action="{% url 'cadastro_fornecedor' %}" method="POST"> {% csrf_token %}
+                {% for field in fornecedor_form.visible_fields %}
+                {% for error in field.errors %}
+                <section class="item-mensagem error" role="alert">
+                    {{ field.errors }}
+                </section>
+                {% endfor %}
+                {% endfor %}
+
+                <div class="item">
+                    <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome Fornecedor</b></label>
+                    {{ fornecedor_form.nome_fornecedor }}
+                </div>
+
+                <div class="item">
+                    <label for="cnpj" name="cnpj"><b>CNPJ</b></label>
+                    {{ fornecedor_form.cnpj }}
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="celular" name="celular"><b>Celular</b></label>
+                        {{ fornecedor_form.celular }}
+                    </div>
+                    <div class="item">
+                        <label for="residencial" name="residencial"><b>Residencial</b></label>
+                        {{ fornecedor_form.residencial }}
+                    </div>
+                    <div class="item">
+                        <label for="comercial" name="comercial"><b>Comercial</b></label>
+                        {{ fornecedor_form.comercial }}
+                    </div>
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="rua" name="rua"><b>Rua</b></label>
+                        {{ fornecedor_form.rua }}
+                    </div>
+
+                    <div class="item">
+                        <label for="celular" name="bairro"><b>Bairro</b></label>
+                        {{ fornecedor_form.bairro }}
+                    </div>
+
+                    <div class="item">
+                        <label for="cidade" name="cidade"><b>Cidade</b></label>
+                        {{ fornecedor_form.cidade }}
+                    </div>
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="cep" nmae="cep"><b>CEP</b></label>
+                        {{ fornecedor_form.cep }}
+                    </div>
+
+                    <div class="item">
+                        <label for="numero" name="numero"><b>Número</b></label>
+                        {{ fornecedor_form.numero }}
+                    </div>
+
+                    <div class="item">
+                        <label for="complemento" name="complemento"><b>Complemento</b></label>
+                        {{ fornecedor_form.complemento }}
+                    </div>
+                </div>
+
+                <div class="confirmar">
+                    <div class="item">
+                        <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
