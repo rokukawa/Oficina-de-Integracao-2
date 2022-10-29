@@ -58,3 +58,45 @@ def atualiza_caneta(request):
         c.ponta = request.POST['ponta']
         c.save()
         return redirect('lista_canetas') 
+
+def cadastro_lote(request):
+    lote_form = LoteForms(request.POST or None)
+    contexto = {'lote_form': lote_form}
+
+    if request.method == 'POST':
+        if lote_form.is_valid():
+            lote_form.save()
+            return redirect('lista_lote')
+        else:
+            return render(request, 'cadastrar/cadastro_lote.html', contexto)
+    else:
+        return render(request, 'cadastrar/cadastro_lote.html', contexto)
+
+
+def lista_lote(request):
+    lote = Lote.objects.all().order_by('codigo_maquina')
+
+    search = request.GET.get('search')
+    if search:
+        lote = lote.filter(codigo_maquina__icontains=search)
+
+    paginator = Paginator(lote, 3)
+
+    page = request.GET.get('page')
+
+    lista_lote = paginator.get_page(page)
+    
+    contexto = {'lista_lote': lista_lote}
+    return render(request, 'listar/lista_lote.html', contexto)
+
+
+def exclui_lote(request, lote_id):
+    lote = Lote.objects.filter(pk=lote_id)
+    lote.delete()
+    return redirect('lista_lote')
+        
+        
+def edita_lote(request, lote_id):
+    edita_lote = Lote.objects.filter(pk=lote_id)
+    contexto = {'edita_lote': edita_lote}
+    return render(request, 'editar/edita_lote.html', contexto)
