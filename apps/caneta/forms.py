@@ -41,10 +41,11 @@ class CanetaForms(forms.ModelForm):
 
         return self.cleaned_data
 
+
 class LoteForms(forms.ModelForm):
     class Meta:
         model = Lote
-        fields = '_all_'
+        fields = ('codigo_maquina', 'data_fabricação', 'quantidade', 'caneta', 'fornecedor')
         widgets = {
             'codigo_maquina': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o código de fabricação da máquina da caneta'}),
             'data_fabricação': forms.DateInput(attrs={'class': 'item', 'max_length':100, 'type':'date', 'placeholder':'Informe a data de fabricação da caneta'}),

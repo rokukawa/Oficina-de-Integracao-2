@@ -72,7 +72,6 @@ def cadastro_lote(request):
     else:
         return render(request, 'cadastrar/cadastro_lote.html', contexto)
 
-
 def lista_lote(request):
     lote = Lote.objects.all().order_by('codigo_maquina')
 
@@ -89,14 +88,24 @@ def lista_lote(request):
     contexto = {'lista_lote': lista_lote}
     return render(request, 'listar/lista_lote.html', contexto)
 
-
 def exclui_lote(request, lote_id):
     lote = Lote.objects.filter(pk=lote_id)
     lote.delete()
     return redirect('lista_lote')
-        
-        
+              
 def edita_lote(request, lote_id):
     edita_lote = Lote.objects.filter(pk=lote_id)
     contexto = {'edita_lote': edita_lote}
-    return render(request, 'editar/edita_lote.html', contexto)
+    return render(request, 'editar/edita_lote.html', contexto)
+
+def atualiza_lote(request):
+    if request.method == 'POST':
+        lote_id = request.POST['lote_id']
+        l = Lote.objects.get(pk=lote_id)
+        l.codigo_maquina = request.POST['codigo_maquina']
+        l.data_fabricação = request.POST['data_fabricação']
+        l.quantidade = request.POST['quantidade']
+        l.Caneta = request.POST['caneta']
+        l.Fornecedor = request.POST['fornecedor']
+        l.save()
+        return redirect('lista_lote') 

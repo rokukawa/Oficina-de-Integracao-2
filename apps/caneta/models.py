@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 from datetime import datetime
+from apps.fornecedor.models import *
 
 # Create your models here.
 
@@ -21,4 +22,4 @@ class Lote(models.Model):
     fornecedor = models.ForeignKey(Fornecedor, on_delete=CASCADE)
 
     def _str_(self):
-        return self.codigo_maquina        
+        return f'{self.codigo_maquina}, {self.data_fabricação}, {self.quantidade}, {self.caneta}, {self.fornecedor}'    
