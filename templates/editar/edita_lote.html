@@ -1,0 +1,74 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+    Edição
+{% endblock %}
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Edição de Lote</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form action="{% url 'atualiza_lote' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        {% if edita_lote %}
+                            {% for lote in edita_lote %}
+
+                                <input type="text" name="lote_id" class="form-control" value="{{ lote.id }}" hidden>
+
+                                <div class="container-space-around">                                 
+                                    <div class="item">
+                                        <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
+                                        <input type="text" name="codigo_maquina" value="{{ lote.codigo_maquina }}" required>          
+                                    </div>
+
+                                    <div class="item">
+                                        <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
+                                        <input type="date" name="data_fabricação" value="{{ lote.data_fabricação }} " required>  
+                                    </div>
+                                </div>
+                                
+                                <div class="container-space-around">
+                                    <div class="item">        
+                                        <label for="quantidade" name="quantidade"><b>Quantidade</b></label>
+                                        <input type="text" name="quantidade" value="{{ lote.quantidade }}" required> 
+                                    </div>
+                                    <div class="item">        
+                                        <label for="caneta" name="caneta"><b>Caneta</b></label>
+                                        <input type="text" name="caneta" value="{{ lote.caneta }}" readonly="True" required> 
+                                    </div>
+                                    <div class="item">        
+                                        <label for="fornecedor" name="fornecedor"><b>Fornecedor</b></label>
+                                        <input type="text" name="fornecedor" value="{{ lote.fornecedor }}" readonly="True" required> 
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="col-12 text-center" style="margin-top: 10px;">
+                            <button class="btn btn-success" type="submit">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
