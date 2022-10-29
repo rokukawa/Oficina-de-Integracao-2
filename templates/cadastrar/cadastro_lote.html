@@ -1,0 +1,82 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+Cadastro
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<div class="col-lg-9">
+    <div class="container">
+        <div class="container-item-titulo">
+            <h2>Cadastro Lote</h2>
+        </div>
+
+        <div class="container-item-form">
+            <form action="{% url 'cadastro_lote' %}" method="POST"> {% csrf_token %}
+                {% for field in lote_form.visible_fields %}
+                {% for error in field.errors %}
+                <section class="item-mensagem error" role="alert">
+                    {{ field.errors }}
+                </section>
+                {% endfor %}
+                {% endfor %}
+
+                <div class="item">
+                    <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
+                    {{ lote_form.codigo_maquina }}
+                </div>
+
+                <div class="item">
+                    <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
+                    {{ lote_form.data_fabricação }}
+                </div>
+
+                <div class="item">
+                    <label for="quantidade" name="quantidade"><b>Quantidade de Canetas</b></label>
+                    {{ lote_form.quantidade }}
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="caneta" name="caneta"><b>Modelo Caneta</b></label>
+                        {{ lote_form.caneta }}
+                    </div>
+                    <div class="item">
+                        <label for="fornecedor" name="fornecedor"><b>Fornecedor</b></label>
+                        {{ lote_form.fornecedor }}
+                    </div>
+                </div>
+
+                <div class="confirmar">
+                    <div class="item">
+                        <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                        <button type="button" class="btn btn-primary" onclick="exibirCriarCaneta()">Ainda não tem
+                            caneta? Clique aqui</button>
+                        <button type="button" class="btn btn-primary" onclick="exibirCriarFornecedor()">Ainda não tem
+                            fornecedor? Clique aqui</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function exibirCriarCaneta() {
+        location.href = "{% url 'cadastro_caneta' %}";
+    }
+
+    function exibirCriarFornecedor() {
+        location.href = "{% url 'cadastro_fornecedor' %}";
+    } 
+</script>
+{% endif %}
+{% endblock %}

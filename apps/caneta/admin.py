@@ -13,5 +13,12 @@ class listandoCaneta(admin.ModelAdmin):
     search_fields = ('modelo', 'cor', 'ponta',)
     list_per_page = 10
 
-
 admin.site.register(Caneta, listandoCaneta)
+
+class listandoLote(admin.ModelAdmin):
+    list_display = ('codigo_maquina', 'data_fabricação')
+    list_display_links = ('codigo_maquina', 'data_fabricação')
+    search_fields = ('codigo_maquina', 'data_fabricação',)
+    list_per_page = 10
+    
+admin.site.register(Lote, listandoLote)
