@@ -19,6 +19,6 @@ class Fornecedor(models.Model):
     complemento = models.TextField(max_length=45, null=True, blank=True)
 
     def __str__(self):
-        return self.nome_fornecedor
+        return f'{self.nome_fornecedor}, {self.cnpj}'    
 
 

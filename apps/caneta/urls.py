@@ -14,4 +14,5 @@ urlpatterns = [
     path('lista/lote', views.lista_lote, name='lista_lote'),
     path('exclui/lote/<int:lote_id>', views.exclui_lote, name='exclui_lote'),
     path('atualiza/lote', views.atualiza_lote, name='atualiza_lote'),
+    path('edita/lote/<int:lote_id>', views.edita_lote, name='edita_lote'),
 ]

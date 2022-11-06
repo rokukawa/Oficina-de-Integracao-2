@@ -1,4 +1,5 @@
 from apps.caneta.models import Caneta
+from apps.fornecedor.models import Fornecedor
 
 
 def campo_contem_numero(valor_campo, nome_campo, lista_de_erros):

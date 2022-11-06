@@ -11,8 +11,8 @@ class Caneta(models.Model):
     cor = models.CharField(max_length=45, validators=[MinLengthValidator(4)], null=False)
     ponta = models.CharField(max_length=45, validators=[MinLengthValidator(4)], null=False)
 
-    def str(self):
-        return f'{self.modelo}, {self.cor}, {self.ponta}'
+    def __str__(self):
+        return self.modelo
 
 class Lote(models.Model):
     codigo_maquina = models.CharField(max_length=45, null=False)
@@ -21,5 +21,5 @@ class Lote(models.Model):
     caneta = models.ForeignKey(Caneta, on_delete=CASCADE)
     fornecedor = models.ForeignKey(Fornecedor, on_delete=CASCADE)
 
-    def _str_(self):
-        return f'{self.codigo_maquina}, {self.data_fabricação}, {self.quantidade}, {self.caneta}, {self.fornecedor}'    
+    def __str__(self):
+            return self.codigo_maquina 
