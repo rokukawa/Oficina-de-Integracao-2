@@ -29,7 +29,7 @@ class TestFormsLote(TestCase):
         form = LoteForms()
         self.assertIn("caneta", form.fields)
         self.assertInHTML(
-            '<input type="select" name="caneta" class="item" max_length="100" placeholder="Informe o seu número de celular" id="id_caneta">', str(form)
+            '<input type="select" name="caneta" class="item" max_length="100" placeholder="Informe o tipo de caneta" id="id_caneta">', str(form)
         )    
 
     def test_campos_form_fornecedor(self):
