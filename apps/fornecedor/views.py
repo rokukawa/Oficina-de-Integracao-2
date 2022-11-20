@@ -35,7 +35,7 @@ def lista_fornecedores(request):
     lista_fornecedores = paginator.get_page(page)
 
     contexto = {'lista_fornecedores': lista_fornecedores}
-    return render(request, 'listar/lista_fornecedores.html', contexto)
+    return render(request, 'listar/lista_fornecedor.html', contexto)
 
 
 def exclui_fornecedor(request, fornecedor_id):
