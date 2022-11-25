@@ -1,0 +1,69 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+Cadastro
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<div class="col-lg-9">
+    <div class="container">
+        <div class="container-item-titulo">
+            <h2>Gerar Relatório</h2>
+        </div>
+
+        <div class="container-item-form">
+            <form action="{% url 'relatorio' %}" method="POST"> {% csrf_token %}
+                {% for field in relatorio_form.visible_fields %}
+                {% for error in field.errors %}
+                <section class="item-mensagem error" role="alert">
+                    {{ field.errors }}
+                </section>
+                {% endfor %}
+                {% endfor %}
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="codigo" name="codigo"><b>Código do Relatório</b></label>
+                        {{ relatorio_form.codigo }}
+                    </div>
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="quantidade_falhas" name="quantidade_falhas"><b>Quantidade de Canetas
+                                Falhas</b></label>
+                        {{ relatorio_form.quantidade_falhas }}
+                    </div>
+
+                    <div class="item">
+                        <label for="lote" name="lote"><b>Lote</b></label>
+                        {{ relatorio_form.lote }}
+                    </div>
+                </div>
+
+                <div class="confirmar">
+                    <div class="item">
+                        <button type="submit" class="btn btn-success">Confirmar Relatório</button>
+                        <button type="button" class="btn btn-primary" onclick="exibirCriarLote()">Ainda não tem lote?
+                            Clique aqui</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function exibirCriarLote() {
+        location.href = "{% url 'cadastro_lote' %}";
+    } 
+</script>
+{%endif %}
+{% endblock %}

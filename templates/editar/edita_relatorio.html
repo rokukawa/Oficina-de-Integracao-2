@@ -1,0 +1,100 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+Edição
+{% endblock %}
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<!-- ##### Contact Form Area Start ##### -->
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Edição de Relatório</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-form-area">
+                    <form action="{% url 'atualiza_relatorio' %}" method="post" enctype="multipart/form-data">{%
+                        csrf_token %}
+                        {% if edita_relatorio %}
+                        {% for relatorio in edita_relatorio %}
+
+                        <input type="text" name="relatorio_id" class="form-control" value="{{ relatorio.id }}" hidden>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="codigo" name="codigo"><b>Código do Relatório</b></label>
+                                <input type="text" name="codigo" value="{{ relatorio.codigo }}" required>
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="quantidade_falhas" name="quantidade_falhas"><b>Quantidade de Canetas
+                                        Falhas</b></label>
+                                <input type="text" name="quantidade_falhas" value="{{ relatorio.quantidade_falhas }}"
+                                    required>
+                            </div>
+
+                            <div class="item">
+                                <label for="lote" name="lote"><b>Lote</b></label>
+                                <input type="text" name="lote" value="{{ relatorio.lote }}" readonly="True" required>
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
+                                <input for="codigo_maquina" name="codigo_maquina"
+                                    value="{{ relatorio.lote.codigo_maquina }}" readonly="True">
+                            </div>
+
+                            <div class="item">
+                                <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
+                                <input for="data_fabricação" name="data_fabricação"
+                                    value="{{ relatorio.lote.data_fabricação }}" readonly="True">
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">
+                                <label for="quantidade" name="quantidade"><b>Quantidade de Canetas no Lote</b></label>
+                                <input for="quantidade" name="quantidade" value="{{ relatorio.lote.quantidade }}"
+                                    readonly="True">
+                            </div>
+                            <div class="item">
+                                <label for="caneta" name="caneta"><b>Caneta</b></label>
+                                <input for="caneta" name="caneta" value="{{ relatorio.lote.caneta }}">
+                            </div>
+                            <div class="item">
+                                <label for="fornecedor" name="fornecedor"><b>Fornecedor</b></label>
+                                <input for="fornecedor" name="fornecedor" value="{{ relatorio.lote.fornecedor }}"
+                                    readonly="True">
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        <div class="col-12 text-center" style="margin-top: 10px;">
+                            <button class="btn btn-success" type="submit">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

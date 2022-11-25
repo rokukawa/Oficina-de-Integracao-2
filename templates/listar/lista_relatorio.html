@@ -1,0 +1,148 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+Listagem
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+
+<div class="col-lg-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Listagem de Relatório</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <form action="{% url 'lista_relatorio' %}" method="GET" class="form-inline">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="search" placeholder="Pesquisar código do relatório">
+                    <button class="btn btn-dark" type="submit">Pesquisar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container-item-form">
+            {% if lista_relatorios %}
+            {% for lista_relatorio in lista_relatorios %}
+            <div class="container"
+                style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="codigo" name="codigo"><b>Código Relatório</b></label>
+                        <input for="codigo" name="codigo" value="{{ lista_relatorio.codigo }}" readonly="True">
+                    </div>
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="quantidade_falhas" name="quantidade_falhas"><b>Quantidade de Canetas
+                                Falhas</b></label>
+                        <input for="quantidade_falhas" name="quantidade_falhas"
+                            value="{{ lista_relatorio.quantidade_falhas }}" readonly="True">
+                    </div>
+
+                    <div class="item">
+                        <label for="lote" name="lote"><b>Lote</b></label>
+                        <input for="lote" name="lote" value="{{ lista_relatorio.lote }}" readonly="True">
+                    </div>
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
+                        <input for="codigo_maquina" name="codigo_maquina"
+                            value="{{ lista_relatorio.lote.codigo_maquina }}" readonly="True">
+                    </div>
+
+                    <div class="item">
+                        <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
+                        <input for="data_fabricação" name="data_fabricação"
+                            value="{{ lista_relatorio.lote.data_fabricação }}" readonly="True">
+                    </div>
+                </div>
+
+                <div class="container-space-around">
+                    <div class="item">
+                        <label for="quantidade" name="quantidade"><b>Quantidade de Canetas no Lote</b></label>
+                        <input for="quantidade" name="quantidade" value="{{ lista_relatorio.lote.quantidade }}"
+                            readonly="True">
+                    </div>
+                    <div class="item">
+                        <label for="caneta" name="caneta"><b>Caneta</b></label>
+                        <input for="caneta" name="caneta" value="{{ lista_relatorio.lote.caneta }}" readonly="True">
+                    </div>
+                    <div class="item">
+                        <label for="fornecedor" name="fornecedor"><b>Fornecedor</b></label>
+                        <input for="fornecedor" name="fornecedor" value="{{ lista_relatorio.lote.fornecedor }}"
+                            readonly="True">
+                    </div>
+                </div>
+
+                <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
+                    <a href="{% url 'exclui_relatorio' lista_relatorio.id %}">
+                        <button class="btn btn-danger" type="submit">Excluir</button>
+                    </a>
+                    <a href="{% url 'edita_relatorio' lista_relatorio.id %}">
+                        <button class="btn btn-warning" type="submit">Editar</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12 col-sm-6 col-lg-4"></div>
+            <p>Nenhum relatório cadastrado ainda.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <section class="top-catagory-area section-padding-20-0">
+        <div class="container">
+            {% if lista_relatorios.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if lista_relatorios.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ lista_relatorios.previous_page_number }}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for pagina in lista_relatorios.paginator.page_range %}
+                {% if lista_relatorios.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link">{{ pagina }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{ pagina }}" class="page-link">{{ pagina }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if lista_relatorios.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ lista_relatorios.next_page_number }}" class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </section>
+</div>
+</div>
+{% endif %}
+{% endblock %}

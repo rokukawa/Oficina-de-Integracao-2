@@ -1,47 +1,54 @@
 {% if user.is_authenticated %}
-    <div class="col-lg-2">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100vh;">
-            <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"></svg>
-                <span class="fs-4">Stylus Canetas</span>
+<div class="col-lg-2">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100vh;">
+        <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"></svg>
+            <span class="fs-4">Stylus Canetas</span>
             </a>
             <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="{% url 'dashboard' %}" class="nav-link link-dark" aria-current="page">
-                        <span class="material-icons-outlined"> home </span>
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'cadastro_caneta' %}" class="nav-link link-dark">
-                        <span class="material-icons-outlined"> edit </span>
-                        Cadastrar Caneta
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'cadastro_fornecedor' %}" class="nav-link link-dark">
-                        <span class="material-icons-outlined"> how_to_reg </span>
-                        Cadastrar Fornecedor
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'cadastro_lote' %}" class="nav-link link-dark">
-                        <span class="material-icons-outlined"> inventory_2 </span>
-                        Cadastrar Lote
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                <strong>Options</strong>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{% url 'dashboard' %}" class="nav-link link-dark" aria-current="page">
+                    <span class="material-icons-outlined"> home </span>
+                    Home
                 </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'cadastro_caneta' %}" class="nav-link link-dark">
+                    <span class="material-icons-outlined"> edit </span>
+                    Cadastrar Caneta
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'cadastro_fornecedor' %}" class="nav-link link-dark">
+                    <span class="material-icons-outlined"> how_to_reg </span>
+                    Cadastrar Fornecedor
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'cadastro_lote' %}" class="nav-link link-dark">
+                    <span class="material-icons-outlined"> inventory_2 </span>
+                    Cadastrar Lote
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'relatorio' %}" class="nav-link link-dark">
+                    <span class="material-icons-outlined"> article </span>
+                    Gerar Relatório
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <strong>Options</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
-                </ul>
-            </div>
+            </ul>
         </div>
     </div>
+</div>
 {% else %}
 {% endif %}
