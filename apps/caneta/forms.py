@@ -71,3 +71,34 @@ class LoteForms(forms.ModelForm):
                 self.add_error(erro, mensagem_erro)
         
         return self.cleaned_data
+
+
+class RelatorioForms(forms.ModelForm):
+    class Meta:
+        model = Relatorio
+        fields = '_all_'
+        widgets = {
+            'lote': forms.Select(attrs={'class': 'item', 'max_length':100, 'placeholder':'Selecione o Lote da caneta'}),
+            'quantidade_falhas': forms.NumberInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe a quantidade de canetas falhas'}),
+            'codigo': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o código do relatório'}),
+        }
+
+    def clean(self):
+        lista_de_erros = {}
+
+        codigo_relatorio = self.cleaned_data.get('codigo')
+
+        campo_vazio(codigo_relatorio, 'codigo', lista_de_erros)
+
+        campo_contem_simbolos(codigo_relatorio, 'codigo', lista_de_erros)
+        
+        relatorio_existente(codigo_relatorio, 'codigo', lista_de_erros)
+
+        remove_espaço(codigo_relatorio)
+
+        if lista_de_erros is not None:
+            for erro in lista_de_erros:
+                mensagem_erro = lista_de_erros[erro]
+                self.add_error(erro, mensagem_erro)
+        
+        return self.cleaned_data

@@ -1,0 +1,186 @@
+/* resetando configuração padrão */
+body, h1, h2, p, ul, li, a{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Nunito', Helvetica, sans-serif;
+    color: #222222;
+}
+
+a{
+    text-decoration: none;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+/* estrutura do container*/
+.container{
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.container-item-titulo, .container-item-form{
+    max-width: 100%;
+    padding-top: 20px;
+}
+
+/* centralizando titulo */
+.container-item-titulo h2{
+    text-align: center;
+    padding: 10px;
+    font-size: 36px;
+}
+
+/* configurando inputs, labels e buttons */
+.item input{
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.item select{
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.item button{
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
+
+.confirmar{
+    padding-top: 10px;
+}
+
+input[type=submit]{
+    background:#006699;
+    color:#ffffff;
+}
+
+/* button[type=submit]{
+    color: #fff;
+    background-color: #1dc08f;
+    border-color: #198754;
+    border-radius: .25rem;    
+    border: 1px solid transparent;
+}  
+
+button[type=button]{
+    color: #fff;
+    background-color: #3496ff;
+    border-color: #0d6efd;
+    border-radius: .25rem;
+    border: 1px solid transparent;
+}
+
+button[type=submit]:hover {
+    background-color: #198754;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+button[type=button]:hover {
+    background-color: #0d6efd;
+    transition: 0.2s;
+    cursor: pointer;
+} */
+
+label{
+    font-weight: bolder;
+}
+
+/* configurando inputs na mesma linha*/
+.container-space-around{
+    display: flex;
+    justify-content: space-around;
+}
+
+.item{
+    flex: 1;
+    padding: 5px;
+}
+
+.item-mensagem{
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.error{
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.success{
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+
+/* partials menu */
+.container-menu{
+    max-width: 100%;
+    height: 100px;
+    background-color: #0f5132;
+   vertical-align: middle;
+}
+
+.container-menu a{
+    color: orange;
+}
+
+.container-item{
+    max-width: 60%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 1.90%;
+}
+
+.item-menu-inicio{
+	padding: 0 10px;
+	font-size: 1.5em;
+    float: left;
+}
+
+.item-menu{
+    float: right;
+}
+
+.item-menu li{
+    display:inline-block;
+}
+
+.item-menu a{
+    text-decoration: none;
+    padding: 0 10px;
+    font-size:1.5em;
+}
