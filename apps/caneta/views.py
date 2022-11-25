@@ -59,6 +59,7 @@ def atualiza_caneta(request):
         c.save()
         return redirect('lista_canetas') 
 
+
 def cadastro_lote(request):
     lote_form = LoteForms(request.POST or None)
     contexto = {'lote_form': lote_form}
@@ -71,6 +72,7 @@ def cadastro_lote(request):
             return render(request, 'cadastrar/cadastro_lote.html', contexto)
     else:
         return render(request, 'cadastrar/cadastro_lote.html', contexto)
+
 
 def lista_lote(request):
     lote = Lote.objects.all().order_by('codigo_maquina')
@@ -88,15 +90,18 @@ def lista_lote(request):
     contexto = {'lista_lote': lista_lote}
     return render(request, 'listar/lista_lote.html', contexto)
 
+
 def exclui_lote(request, lote_id):
     lote = Lote.objects.filter(pk=lote_id)
     lote.delete()
     return redirect('lista_lote')
-              
+
+
 def edita_lote(request, lote_id):
     edita_lote = Lote.objects.filter(pk=lote_id)
     contexto = {'edita_lote': edita_lote}
     return render(request, 'editar/edita_lote.html', contexto)
+
 
 def atualiza_lote(request):
     if request.method == 'POST':
@@ -109,3 +114,57 @@ def atualiza_lote(request):
         l.Fornecedor = request.POST['fornecedor']
         l.save()
         return redirect('lista_lote') 
+
+
+def cadastro_relatorio(request):
+    relatorio_form = RelatorioForms(request.POST or None)
+    contexto = {'relatorio_form': relatorio_form} 
+    
+    if request.method == 'POST':
+        if relatorio_form.is_valid():
+            relatorio_form.save()
+            return redirect('lista_relatorio')
+        else:
+            return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
+    else:
+        return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
+
+    
+def lista_relatorio(request):
+    relatorios = Relatorio.objects.all().order_by('codigo')
+
+    search = request.GET.get('search')
+    if search:
+        relatorios = relatorios.filter(codigo__icontains=search)
+
+    paginator = Paginator(relatorios, 2)
+
+    page = request.GET.get('page')
+
+    lista_relatorios = paginator.get_page(page)
+
+    contexto = {'lista_relatorios': lista_relatorios}
+    return render(request, 'listar/lista_relatorio.html', contexto)
+
+
+def exclui_relatorio(request, relatorio_id):
+    relatorio = Relatorio.objects.filter(pk=relatorio_id)
+    relatorio.delete()
+    return redirect('lista_relatorio')
+
+
+def edita_relatorio(request, relatorio_id):
+    edita_relatorio = Relatorio.objects.filter(pk=relatorio_id)
+    contexto = {'edita_relatorio': edita_relatorio}
+    return render(request, 'editar/edita_relatorio.html', contexto)
+
+
+def atualiza_relatorio(request):
+    if request.method == 'POST':
+        relatorio_id = request.POST['relatorio_id']
+        r = Relatorio.objects.get(pk=relatorio_id)
+        r.Lote = request.POST['lote']
+        r.quantidade_falhas = request.POST['quantidade_falhas']
+        r.codigo = request.POST['codigo']
+        r.save()
+        return redirect('lista_relatorio') 

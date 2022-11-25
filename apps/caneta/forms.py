@@ -76,7 +76,7 @@ class LoteForms(forms.ModelForm):
 class RelatorioForms(forms.ModelForm):
     class Meta:
         model = Relatorio
-        fields = '_all_'
+        fields = ('lote', 'quantidade_falhas', 'codigo')
         widgets = {
             'lote': forms.Select(attrs={'class': 'item', 'max_length':100, 'placeholder':'Selecione o Lote da caneta'}),
             'quantidade_falhas': forms.NumberInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe a quantidade de canetas falhas'}),
